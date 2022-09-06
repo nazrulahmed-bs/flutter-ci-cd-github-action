@@ -15,23 +15,21 @@ jobs:
       - run: flutter upgrade
       - run: flutter pub get
       - run: flutter test
-      - run: flutter build apk
+      - run: flutter build apk --debug --split-per-abi
       - name: Create a Release APK
         uses: ncipollo/release-action@v1
         with:
           artifacts: "build/app/outputs/flutter-apk/app-release.apk"
           tag: ver-${{ github.sha }}
           token: ${{ secrets.token_for_ci_cd_practice }}
-      name: Upload on firebase app distributor
-        runs-on: ubuntu-latest
-        steps:
-          - uses: wzieba/Firebase-Distribution-Github-Action@v1.2.1
-            with:
-              appId: ${{secrets.FIREBASE_ANDROID_APPID}}
-              token: ${{secrets.FIREBASE_TOKEN}}
-              groups: testers
-              release_notes: "a new version"
-              file: "build/app/outputs/flutter-apk/app-release.apk"
 
+
+      - name: Upload artifact to Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+          appId: ${{secrets.FIREBASE_ANDROID_APPID}}
+          token: ${{secrets.FIREBASE_TOKEN}}
+          groups: core-test-team
+          file: "build/app/outputs/flutter-apk/app-release.apk"
 
 
