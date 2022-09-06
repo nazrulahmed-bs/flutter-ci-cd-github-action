@@ -24,6 +24,7 @@ jobs:
           token: ${{ secrets.token_for_ci_cd_practice }}
            
   deploy:
+    needs: [build]
     name: Upload on firebase app distributor
     runs-on: ubuntu-latest
     steps:
