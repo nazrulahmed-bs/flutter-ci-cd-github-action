@@ -16,12 +16,6 @@ jobs:
       - run: flutter pub get
       - run: flutter test
       - run: flutter build apk
-      - name: Create a Release APK
-        uses: ncipollo/release-action@v1
-        with:
-          artifacts: "build/app/outputs/flutter-apk/app-release.apk"
-          tag: ver-${{ github.sha }}
-          token: ${{ secrets.token_for_ci_cd_practice }}
 
 
       - name: Upload artifact to Firebase App Distribution
