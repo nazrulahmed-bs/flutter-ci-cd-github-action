@@ -33,5 +33,5 @@ jobs:
           token: ${{secrets.FIREBASE_TOKEN}}
           groups: testers
           release_notes: "a new version"
-          file: "build\app\outputs\flutter-apk\app-release.apk"
+          file: "build/app/outputs/flutter-apk/app-release.apk"
 
