@@ -22,16 +22,16 @@ jobs:
           artifacts: "build/app/outputs/flutter-apk/app-release.apk"
           tag: ver-${{ github.sha }}
           token: ${{ secrets.token_for_ci_cd_practice }}
+      name: Upload on firebase app distributor
+        runs-on: ubuntu-latest
+        steps:
+          - uses: wzieba/Firebase-Distribution-Github-Action@v1.2.1
+            with:
+              appId: ${{secrets.FIREBASE_ANDROID_APPID}}
+              token: ${{secrets.FIREBASE_TOKEN}}
+              groups: testers
+              release_notes: "a new version"
+              file: "build/app/outputs/flutter-apk/app-release.apk"
 
-  deploy:
-    name: Upload on firebase app distributor
-    runs-on: ubuntu-latest
-    steps:
-    - uses: wzieba/Firebase-Distribution-Github-Action@v1.2.1
-      with:
-          appId: ${{secrets.FIREBASE_ANDROID_APPID}}
-          token: ${{secrets.FIREBASE_TOKEN}}
-          groups: testers
-          release_notes: "a new version"
-          file: "build/app/outputs/flutter-apk/app-release.apk"
+
 
