@@ -29,11 +29,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: npm install n stable
-      - uses: wzieba/Firebase-Distribution-Github-Action@v1.2.1
+      - uses: wzieba/Firebase-Distribution-Github-Action@v1.3.2
         with:
           appId: ${{secrets.FIREBASE_ANDROID_APPID}}
           token: ${{secrets.FIREBASE_TOKEN}}
           groups: core test team
           release_notes: "a new version"
-          file: "build/app/outputs/apk/debug/*.apk"
+          file: /home/runner/work/{YOUR_REPO}/{YOUR_REPO}/build/app/outputs/flutter-apk/*.apk
 
