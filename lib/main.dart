@@ -6,6 +6,7 @@ void main() {
   runApp(HomePage());
 }
 
+/// Home page UI
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
   final List items = ['About', 'Contact'];
