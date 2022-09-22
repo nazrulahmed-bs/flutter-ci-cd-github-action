@@ -50,8 +50,7 @@ jobs:
           path: version.txt
       - run: flutter pub get
       - run: flutter test
-      - run: flutter build apk --release --split-per-abi
-      - run: flutter build appbundle
+      - run: flutter build apk
       - name: Upload artifact to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
