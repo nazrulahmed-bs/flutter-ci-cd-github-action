@@ -6,6 +6,7 @@ on:
 
 jobs:
   version:
+    if: contains(github.event.head_commit.message, 'apk')||contains(github.event.head_commit.message, 'web')||contains(github.event.head_commit.message, 'both')
     name: Create version number
     runs-on: ubuntu-latest
     steps:
@@ -61,8 +62,6 @@ jobs:
           file: "build/app/outputs/flutter-apk/app-release.apk"
           tag: ${{ steps.version.outputs.content }}
           commit: ${{ github.sha }}
-
-
   build_web:
     if: contains(github.event.head_commit.message, 'web')||contains(github.event.head_commit.message, 'both')
     name: Build Flutter (Web)
@@ -80,7 +79,6 @@ jobs:
         with:
           name: web-build
           path: build/web
-
   deploy_web:
     name: Deploy Web to Firebase Hosting
     needs: build_web
