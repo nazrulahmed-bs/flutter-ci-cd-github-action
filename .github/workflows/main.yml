@@ -27,9 +27,44 @@ jobs:
         with:
           name: gitversion
           path: version.txt
+  build:
+    if: contains(github.event.head_commit.message, 'apk')
+    name: Build APK and Create release
+    needs: [ version ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '12.x'
+      - uses: subosito/flutter-action@v1
+        with:
+          flutter-version: '3.3.0'
+      - name: Get version.txt
+        uses: actions/download-artifact@v2
+        with:
+          name: gitversion
+      - name: Read version
+        id: version
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: version.txt
+      - run: flutter pub get
+      - run: flutter test
+      - run: flutter build apk
+      - name: Upload artifact to Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+          appId: ${{secrets.FIREBASE_ANDROID_APPID}}
+          token: ${{secrets.FIREBASE_TOKEN}}
+          groups: core-test-team
+          file: "build/app/outputs/flutter-apk/app-release.apk"
+          tag: ${{ steps.version.outputs.content }}
+          commit: ${{ github.sha }}
 
 
   build_web:
+    if: contains(github.event.head_commit.message, 'web')
     name: Build Flutter (Web)
     runs-on: ubuntu-latest
     steps:
