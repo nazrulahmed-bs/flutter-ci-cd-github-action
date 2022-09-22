@@ -1,4 +1,4 @@
-name: Demo App Android Release
+name: Demo App and Web Release
 
 on:
   push:
@@ -73,6 +73,7 @@ jobs:
         with:
           flutter-version: '3.3.0'
       - run: flutter pub get
+      - run: flutter test
       - run: flutter build web
       - name: Archive Production Artifact
         uses: actions/upload-artifact@master
