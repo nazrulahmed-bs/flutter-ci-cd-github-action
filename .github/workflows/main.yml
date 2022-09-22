@@ -63,6 +63,7 @@ jobs:
 
   deploy:
     name: Build Web and Deploy on the hosting
+    needs: [ build ]
     runs-on: ubuntu-latest
     steps:
       - run: flutter pub get
