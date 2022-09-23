@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
         appBar: kIsWeb
             ? null
             : AppBar(
-                title: const Text('CI/CD practice with Flutter'),
+                title: const Text('CI/CD practice with GitHub Actions'),
               ),
         drawer: Drawer(
           child: Padding(
