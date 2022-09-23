@@ -88,7 +88,7 @@ class HomePage extends StatelessWidget {
 
   Widget _generateItem(String title) {
     return Container(
-      width: 800,
+      width: 700,
       margin: const EdgeInsets.all(8),
       decoration: BoxDecoration(
         color: Colors.white,
