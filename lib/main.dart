@@ -90,7 +90,6 @@ class HomePage extends StatelessWidget {
       children: [
         _generateItem('Working with github action is fun!'),
         _generateItem('Firebase is awesome!'),
-        _generateItem('CI/CD in Action'),
       ],
     );
   }
