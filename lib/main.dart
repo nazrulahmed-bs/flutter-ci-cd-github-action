@@ -24,30 +24,38 @@ class HomePage extends StatelessWidget {
                 title: const Text('CI/CD practice with GitHub Actions'),
               ),
         drawer: Drawer(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                const Text(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                height: 200,
+                width: double.infinity,
+                color: Colors.blue,
+              ),
+              const Padding(
+                padding: EdgeInsets.all(12.0),
+                child: Text(
                   'Home',
                   style: AppStyle.logoTextStyle,
                 ),
-                ...items.map((e) => Padding(
-                      padding: const EdgeInsets.only(top: 8.0),
-                      child: Text(
-                        e,
-                        style: AppStyle.itemTextStyle,
-                      ),
-                    ))
-              ],
-            ),
+              ),
+              ...items.map((e) => Padding(
+                    padding: const EdgeInsets.only(top: 8.0, left: 12),
+                    child: Text(
+                      e,
+                      style: AppStyle.itemTextStyle,
+                    ),
+                  ))
+            ],
           ),
         ),
-        body: Column(
-          children: [
-            _buildHeader(),
-            _buildBody(),
-          ],
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              _buildHeader(),
+              _buildBody(),
+            ],
+          ),
         ),
       ),
     );
