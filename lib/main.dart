@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ci_cd_practice/app_style.dart';
+import 'package:flutter_ci_cd_practice/constants.dart';
 
 void main() {
   runApp(HomePage());
@@ -9,7 +10,7 @@ void main() {
 /// Home page UI
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
-  final List items = ['About', 'Contact'];
+  final List items = ['About', 'Contact', 'Support'];
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -44,6 +45,7 @@ class HomePage extends StatelessWidget {
         body: ListView(
           children: [
             _buildHeader(),
+            _buildBody(),
           ],
         ),
       ),
@@ -71,5 +73,33 @@ class HomePage extends StatelessWidget {
             ),
           )
         : const SizedBox();
+  }
+
+  Widget _buildBody() {
+    return Container(
+      margin: const EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(6),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const [
+          Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Text(
+              'Working with github action is fun!',
+              style: AppStyle.logoTextStyle,
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Text(
+              dummyText,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
