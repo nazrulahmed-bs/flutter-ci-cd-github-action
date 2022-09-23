@@ -10,7 +10,7 @@ void main() {
 /// Home page UI
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
-  final List items = ['About', 'Contact'];
+  final List items = ['About', 'Contact', 'Support'];
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -90,6 +90,7 @@ class HomePage extends StatelessWidget {
       children: [
         _generateItem('Working with github action is fun!'),
         _generateItem('Firebase is awesome!'),
+        _generateItem('CI/CD in Action'),
       ],
     );
   }
