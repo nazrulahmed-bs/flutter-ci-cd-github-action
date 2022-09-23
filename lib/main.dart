@@ -10,11 +10,12 @@ void main() {
 /// Home page UI
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
-  final List items = ['About', 'Contact', 'Support'];
+  final List items = ['About', 'Contact'];
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "CI/CD with Flutter",
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.grey[100],
         appBar: kIsWeb
@@ -25,7 +26,7 @@ class HomePage extends StatelessWidget {
         drawer: Drawer(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: ListView(
+            child: Column(
               children: [
                 const Text(
                   'Home',
@@ -42,7 +43,7 @@ class HomePage extends StatelessWidget {
             ),
           ),
         ),
-        body: ListView(
+        body: Column(
           children: [
             _buildHeader(),
             _buildBody(),
@@ -76,7 +77,18 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _buildBody() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _generateItem('Working with github action is fun!'),
+        _generateItem('Firebase is awesome!'),
+      ],
+    );
+  }
+
+  Widget _generateItem(String title) {
     return Container(
+      width: 800,
       margin: const EdgeInsets.all(8),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -84,15 +96,15 @@ class HomePage extends StatelessWidget {
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
+        children: [
           Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             child: Text(
-              'Working with github action is fun!',
+              title,
               style: AppStyle.logoTextStyle,
             ),
           ),
-          Padding(
+          const Padding(
             padding: EdgeInsets.all(16.0),
             child: Text(
               dummyText,
